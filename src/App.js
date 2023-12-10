@@ -88,7 +88,7 @@ Now That We Have A Game Plan
   Set up your project: First, create a new React project using the create-react-app command. Delete src folder, and then re-create it. Add Back in index.js, App.js, styles.css, components/Todo.js, components/TodoList.js
 */
 
-import "./styles.css";
+import "./styles.css"
 import { useState, useEffect } from "react"
 import TodoList from "./components/TodoList"
 
@@ -103,7 +103,7 @@ export default function App() {
 
   const completeTodo = (id, e) => {
     const todosCopy = [...todos]
-    const indexOfTodo = todosCopy.findIndex ((i) => i.id === id)
+    const indexOfTodo = todosCopy.findIndex((i) => i.id === id)
     todosCopy[indexOfTodo].completed = !todosCopy[indexOfTodo].completed
     setTodos([...todosCopy])
   }

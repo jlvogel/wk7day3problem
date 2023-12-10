@@ -7,7 +7,7 @@ export default function TodoList({
   editTodoText,
   deleteTodo
 }) {
-  return(
+  return (
     <>
       <h1>Create Todo</h1>
       <input
@@ -22,6 +22,22 @@ export default function TodoList({
           <ul className="todolist">
             {todos
               .filter((i) => !i.completed)
+              .map((todo) => {
+                return (
+                  <Todo
+                    key={todo.id}
+                    todo={todo}
+                    completeTodo={completeTodo}
+                    editTodoText={editTodoText}
+                    deleteTodo={deleteTodo}
+                  />
+                )
+              })}
+          </ul>
+          <h1>Completed Items </h1>
+          <ul className="todolist">
+            {todos
+              .filter((i) => i.completed)
               .map((todo) => {
                 return (
                   <Todo
