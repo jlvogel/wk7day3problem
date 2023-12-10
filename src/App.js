@@ -95,6 +95,12 @@ import TodoList from "./components/TodoList"
 export default function App() {
   const [todos, setTodos] = useState([])
 
+  /*
+  Add Persistence
+
+  Add a UseEffect
+  */
+
   const addTodo = (e) => {
     const newTodo = { text: e.target.value, id: Date.now(), completed: false }
     setTodos([newTodo, ...todos])
