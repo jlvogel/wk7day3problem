@@ -87,3 +87,15 @@ Now That We Have A Game Plan
 
   Set up your project: First, create a new React project using the create-react-app command. Delete src folder, and then re-create it. Add Back in index.js, App.js, styles.css, components/Todo.js, components/TodoList.js
 */
+
+import "./styles.css";
+import { useState, useEffect } from "react"
+import TodoList from "./components/TodoList"
+
+export default function App() {
+  return (
+    <div className="App">
+      <TodoList/>
+    </div>
+  )
+}
