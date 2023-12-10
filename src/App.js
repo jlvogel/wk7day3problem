@@ -111,7 +111,7 @@ export default function App() {
   const editTodoText = (id, e) => {
     const todosCopy = [...todos]
     const indexOfTodo = todosCopy.findIndex((i) => i.id === id)
-    todosCopy[indexOfTodo].tex = e.target.value
+    todosCopy[indexOfTodo].text = e.target.value
     setTodos([...todosCopy])
     e.target.value = ""
   }
