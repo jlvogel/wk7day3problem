@@ -99,10 +99,50 @@ export default function App() {
   Add Persistence
 
   Add a UseEffect
+
+  Like we mentioned at the beginning of class the useEffect hook in React is a built-in hook that allows developers to execute code after a component renders. It is triggered after every render, including the first render.  It is used to perform side effects such as data fetching, manually changing the DOM, and subscribing/unsubscribing from external events. The useEffect hook takes a function as an argument and is triggered after the component renders. This function should contain all of the code that needs to be executed after the component renders. The useEffect hook is a powerful tool for managing side effects in React components.
+  */
+
+  useEffect(() => {
+    const savedTodos = localStorage.getItem("todos");
+    if (savedTodos && savedTodos !== "undefined" && savedTodos !== "null") {
+      setTodos(JSON.parse(savedTodos));
+    };
+  }, []);
+
+  /*
+  We are using the useEffect here to take todos that are stored in the localStorage and automatically set our state to them.
+
+  But in order for this code to actually ever fetch anything from localStorage we need to set the localStorage everytime we update the state
+
+  localStorage.setItem("todos", JSON.stringify(Place Todos Here))
+
+  Local Storage to persist simple data
+
+  LocalStorage can be used with React to store and retrieve data in the browser after the user does a reload of the browser.
+
+  To set a value in the browser's local storage, use the setItem() method.  For example, to store a value called 'name', use the following code:
+
+  localStorage.setItem('name', 'John Doe');
+
+  To retrieve a value from the browser's local storage, use the getItem() method. For example, to retrieve the value stored with the key 'name', use the following code:
+
+  let name = localStorage.getItem('name');
+
+  To remove a value from the browser's local storage, use the removeItem() method. For example, to remove the value stored with the key 'name',use the following code:
+
+  localStorage.removeItem('name');
+
+  local Storage saves all data as a string so we also must use the JSON.stringify to stringify things like objects and arrays before we store it in localStorage
+
+  Then when we want to retrieve it we must use JSON.parse to turn it back into an object or array.
+
+  /// Ok whoa this is all pretty deep
   */
 
   const addTodo = (e) => {
     const newTodo = { text: e.target.value, id: Date.now(), completed: false }
+    localStorage.setItem("todos", JSON.stringify([newTodo, ...todos]))
     setTodos([newTodo, ...todos])
     e.target.value = ""
   }
@@ -111,6 +151,7 @@ export default function App() {
     const todosCopy = [...todos]
     const indexOfTodo = todosCopy.findIndex((i) => i.id === id)
     todosCopy[indexOfTodo].completed = !todosCopy[indexOfTodo].completed
+    localStorage.setItem("todos", JSON.stringify([...todosCopy]))
     setTodos([...todosCopy])
   }
 
@@ -118,6 +159,7 @@ export default function App() {
     const todosCopy = [...todos]
     const indexOfTodo = todosCopy.findIndex((i) => i.id === id)
     todosCopy[indexOfTodo].text = e.target.value
+    localStorage.setItem("todos", JSON.stringify([...todosCopy]))
     setTodos([...todosCopy])
     e.target.value = ""
   }
@@ -126,6 +168,10 @@ export default function App() {
     const todosCopy = [...todos]
     const indexOfTodo = todosCopy.findIndex((i) => i.id === id)
     todosCopy.splice(indexOfTodo, 1)
+    localStorage.setItem(
+      "todos",
+      JSON.stringify([...todosCopy])
+    )
     setTodos([...todosCopy])
   };
 
